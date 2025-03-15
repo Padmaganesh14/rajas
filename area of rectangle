@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+class kabi{
+    private:
+     float length;
+     float breadth;
+     public:
+     kabi (float l,float b){
+        length=l;
+        breadth=b;
+     }
+    float Area(){
+      return length * breadth;
+
+    }
+    float perimeter(){
+        return 2*(length+breadth);
+
+    }
+    };
+int main(){
+    float length;
+    float breadth;
+
+    cout<<"enter the value of length:";
+    cin>>length;
+    cout<<"enter the value of breadth:";
+    cin>>breadth;
+    kabi s(length,breadth);
+    cout<<"AREA OF RECTANGLE:"<<s.Area()<<endl;
+    cout<<"PERIMETER OF RECTANGLE:"<<s.perimeter();
+ return 0;
+}
+
+
+
+    
