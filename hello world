@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+class BADASS {
+public:
+    void leoC() {
+        cout << "HELLO WORLD" << endl;
+    }
+};
+
+int main() {
+    BADASS b;  // Corrected object declaration
+    b.leoC();  // Corrected function call
+    return 0;
+}
