@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+class Employee {
+private:
+    string currentDesignation;
+    string previousDesignation;
+    double salary;
+    string qualifications;
+    double highSchoolScores;
+    string name;
+    int age;
+    string address;
+
+public:
+
+    Employee(string n, int a, string addr, string currentDes, string prevDes, double sal, string qual, double hss)
+        : name(n), age(a), address(addr), currentDesignation(currentDes), previousDesignation(prevDes), salary(sal), qualifications(qual), highSchoolScores(hss) {}
+
+
+    void displayEmployeeData() {
+        cout << "Applying for Web Developer Job" << endl;
+        cout << "Employee Bio-Data"<<endl;
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+        cout << "Address: " << address << endl;
+        cout << "Current Designation: " << currentDesignation << endl;
+        cout << "Previous Designation: " << previousDesignation << endl;
+        cout << "Salary: $" << salary << endl;
+        cout << "Qualifications: " << qualifications << endl;
+        cout << "High School Scores: " << highSchoolScores << endl;
+    }
+};
+
+
+    int main() {
+        string name, address, currentDesignation, previousDesignation, qualifications;
+        int age;
+        double salary, highSchoolScores;
+      cout<<"enter the name:"<<endl;
+      cin>>name;
+        cout <<"enter the address:"<<endl;
+        cin>>address;
+        
+        cout<<"Enter the age :"<<endl;
+        cin>>age;
+        cout << "Enter previous Employee designation: "<<endl;
+        cin>>previousDesignation;
+        cout<<"Enter current employee designation:"<<endl;
+        cin>>currentDesignation;
+
+        cout<<"Enter Employee Salary";
+        cin>>salary;
+        cin.ignore();
+        cout<<"Enter Employee Qualification :"<<endl;
+        getline(cin,qualifications);
+        cout<<"Enter the High School scores:"<<endl;
+
+        cin>> highSchoolScores;
+        Employee emp(name ,age,address,currentDesignation,previousDesignation,salary,qualifications,highSchoolScores);
+        emp.displayEmployeeData();
+    
+    return 0;
+}
