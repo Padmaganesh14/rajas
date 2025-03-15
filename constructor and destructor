@@ -13,7 +13,7 @@ class raja{
         cout<<"destructor called value was:"<<value<<endl;
 
     }
-    void display()const{
+    void display(){
         cout<<"the value is:"<<value<<endl;
 
     }
