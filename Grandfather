@@ -1,0 +1,31 @@
+class Grandparent {
+    void show() {
+        System.out.println("Grandparent: grandfather and grandma");
+    }
+}
+
+class Parent extends Grandparent {
+    void displayFather() {
+        System.out.println("Parent: Father");
+    }
+    
+    void displayMother() {
+        System.out.println("Parent: Mother");
+    }
+}
+
+class Child extends Parent {
+    void displayChild() {
+        System.out.println("Child: Children");
+    }
+}
+
+public class Family {
+    public static void main(String[] args) {
+        Child obj = new Child();
+        obj.show();               // Grandparent method
+        obj.displayFather();      // Parent method
+        obj.displayChild();       // Child method
+        obj.displayMother();      // Parent method
+    }
+}
