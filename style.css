@@ -504,4 +504,64 @@ nav {
   display: flex;
   gap: 40px;
 }
+/* Ensure body doesn't overflow on small screens */
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Make all images and sections flexible */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive typography and containers */
+html {
+  font-size: 100%;
+}
+
+.container, .carousel, .item, .introduce, .detail {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Force no horizontal scroll on small screens */
+* {
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+/* Viewport-aware layout */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 90%;
+  }
+
+  .carousel .item {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .carousel .item img {
+    width: 90%;
+  }
+
+  .carousel .introduce,
+  .carousel .detail {
+    width: 100%;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav {
+    flex-wrap: wrap;
+  }
+}
+
+
 
