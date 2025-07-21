@@ -571,3 +571,25 @@ html {
   align-items: center;
   overflow: hidden;
 }
+/* For phones (up to 576px wide) */
+@media (max-width: 576px) {
+  .carousel {
+    height: 400px;
+    font-size: 9px;
+  }
+  .carousel .list .item {
+    width: 100%;
+  }
+  header {
+    padding: 10px 5px;
+  }
+}
+
+/* For tablets (577px to 991px wide) */
+@media (min-width: 577px) and (max-width: 991px) {
+  .carousel {
+    height: 600px;
+    font-size: 12px;
+  }
+}
+
