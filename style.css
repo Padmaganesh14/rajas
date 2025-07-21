@@ -504,18 +504,25 @@ nav {
   display: flex;
   gap: 40px;
 }
+@media (max-width: 576px) {
+  .carousel .list .item {
+    padding: 24px 8px 16px 8px;
+  }
+  .carousel .list .item .introduce, 
+  .carousel .list .item img {
+    width: 90%;
+    margin-bottom: 12px;
+  }
+  .seeMore, .arrows, .seeAll {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .carousel .list .item .topic, 
+  .carousel .list .item .title, 
+  .carousel .list .item .des {
+    margin-bottom: 10px;
+  }
+}
 
 
 /* In your CSS */
-@media (max-width: 576px) {
-  body {
-    font-size: 14px;
-    padding: 5px;
-  }
-  header, .carousel {
-    width: 100%;
-  }
-  .carousel .list .item img {
-    width: 100%;
-  }
-}
