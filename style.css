@@ -520,13 +520,12 @@ nav {
 /* For very large desktops */
 @media screen and (min-width: 1200px) {
   body {
-    background-color: #e0e0e0;
+    background-color: gold;
   }
   .carousel {
-    height: 900px; /* bigger height for bigger screen */
+    height: 900px; 
   }
 }
-
 /* For small tablets and big phones */
 @media screen and (max-width: 600px) {
   .carousel {
@@ -536,5 +535,6 @@ nav {
     font-size: 14px;
   }
 }
+
 
 
