@@ -517,3 +517,24 @@ nav {
     margin-top: 10px;
   }
 }
+/* For very large desktops */
+@media screen and (min-width: 1200px) {
+  body {
+    background-color: #e0e0e0;
+  }
+  .carousel {
+    height: 900px; /* bigger height for bigger screen */
+  }
+}
+
+/* For small tablets and big phones */
+@media screen and (max-width: 600px) {
+  .carousel {
+    height: 500px;
+  }
+  header nav a {
+    font-size: 14px;
+  }
+}
+
+
