@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+void insert(Node** head_ref, int val,Node*nullptr) {
+    Node* newNode = new Node;
+    newNode->data = val;
+    newNode->next = nullptr;
+
+    if (*head_ref == nullptr) {
+        *head_ref = newNode;
+        return;
+    }
+
+    Node* temp = *head_ref;
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+}
+
+bool deleteNode(Node** head_ref, int val,Node*nullptr) {
+    Node* temp = *head_ref;
+    Node* prev = nullptr;
+
+    if (temp != nullptr && temp->data == val) {
+        *head_ref = temp->next;
+        delete temp;
+        return true;
+    }
+
+    while (temp != nullptr && temp->data != val) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (temp == nullptr)
+        return false;
+
+    prev->next = temp->next;
+    delete temp;
+    return true;
+}
+
+void display(Node* head,Node*nullptr) {
+    Node* temp = head;
+    while (temp != nullptr) {
+        cout << temp->data;
+        if (temp->next != nullptr)
+            cout << " -> ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main() {
+	Node*nullptr;
+    Node* head = nullptr;
+    int n, val;
+
+    cout << "How many values do you want to insert? ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        cout << "Enter value #" << (i + 1) << ": ";
+        cin >> val;
+        insert(&head, val,nullptr);
+    }
+
+    cout << "List after insertion: ";
+    display(head,nullptr);
+
+    cout << "Enter value to delete: ";
+    cin >> val;
+    bool deleted = deleteNode(&head, val,nullptr);
+    if (deleted) {
+        cout << "List after deleting " << val << ": ";
+        display(head,nullptr);
+    } else {
+        cout << "Value " << val << " not found." << endl;
+    }
+
+    cout << "Final list: ";
+    display(head,nullptr);
+
+    return 0;
+}
