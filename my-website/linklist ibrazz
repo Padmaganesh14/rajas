@@ -13,6 +13,7 @@ struct Node {
 
 Node* head = NULL;
 
+// Insert at end
 void insertAtEnd(int value) {
     Node* newNode = new Node(value);
     if (!head) {
@@ -24,12 +25,14 @@ void insertAtEnd(int value) {
     temp->next = newNode;
 }
 
+// Insert at beginning
 void insertAtBeginning(int value) {
     Node* newNode = new Node(value);
     newNode->next = head;
     head = newNode;
 }
 
+// Insert at position
 void insertAtPosition(int value, int position) {
     Node* newNode = new Node(value);
     if (position == 1) {
@@ -55,33 +58,68 @@ void insertAtPosition(int value, int position) {
     temp->next = newNode;
 }
 
-void DeleteByValue(int key) {
+// Delete at beginning
+void deleteAtBeginning() {
     if (!head) {
-        cout << "List is empty. Nothing to delete." << endl;
+        cout << "List is empty." << endl;
         return;
     }
-    if (head->data == key) {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-        cout << "Deleted value " << key << endl;
-        return;
-    }
-    Node* prev = NULL;
-    Node* current = head;
-    while (current && current->data != key) {
-        prev = current;
-        current = current->next;
-    }
-    if (!current) {
-        cout << "Value " << key << " not found." << endl;
-        return;
-    }
-    prev->next = current->next;
-    delete current;
-    cout << "Deleted value " << key << endl;
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+    cout << "Deleted node at beginning." << endl;
 }
 
+// Delete at end
+void deleteAtEnd() {
+    if (!head) {
+        cout << "List is empty." << endl;
+        return;
+    }
+    if (!head->next) {
+        delete head;
+        head = NULL;
+        cout << "Deleted node at end (only node)." << endl;
+        return;
+    }
+    Node* temp = head;
+    while (temp->next && temp->next->next) {
+        temp = temp->next;
+    }
+    delete temp->next;
+    temp->next = NULL;
+    cout << "Deleted node at end." << endl;
+}
+
+// Delete at position
+void deleteAtPosition(int position) {
+    if (!head) {
+        cout << "List is empty." << endl;
+        return;
+    }
+    if (position == 1) {
+        deleteAtBeginning();
+        return;
+    }
+    Node* temp = head;
+    for (int i = 1; i <= position - 2; i++) {
+        if (!temp->next) {
+            cout << "Invalid position" << endl;
+            return;
+        }
+        temp = temp->next;
+    }
+    Node* toDelete = temp->next;
+    if (!toDelete) {
+        cout << "Invalid position" << endl;
+        return;
+    }
+    temp->next = toDelete->next;
+    delete toDelete;
+    cout << "Deleted node at position " << position << "." << endl;
+}
+
+// Traverse and print
 void TraverseLinkedList() {
     if (!head) {
         cout << "List is empty." << endl;
@@ -98,12 +136,14 @@ void TraverseLinkedList() {
 int main() {
     string command;
     cout << "Commands:\n"
-         << "i e <value>   - Insert at end\n"
-         << "i b <value>   - Insert at beginning\n"
+         << "i b <value>       - Insert at beginning\n"
+         << "i e <value>       - Insert at end\n"
          << "i p <value> <pos> - Insert at position\n"
-         << "d <value>     - Delete by value\n"
-         << "t             - Traverse list\n"
-         << "q             - Quit\n";
+         << "d b               - Delete at beginning\n"
+         << "d e               - Delete at end\n"
+         << "d p <pos>         - Delete at position\n"
+         << "t                 - Traverse list\n"
+         << "q                 - Quit\n";
 
     while (true) {
         cout << "\nEnter command: ";
@@ -126,8 +166,19 @@ int main() {
                 cout << "Invalid insert command" << endl;
             }
         } else if (command == "d") {
-            int val; cin >> val;
-            DeleteByValue(val);
+            string where;
+            cin >> where;
+            if (where == "b") {
+                deleteAtBeginning();
+            } else if (where == "e") {
+                deleteAtEnd();
+            } else if (where == "p") {
+                int pos;
+                cin >> pos;
+                deleteAtPosition(pos);
+            } else {
+                cout << "Invalid delete command" << endl;
+            }
         } else if (command == "t") {
             TraverseLinkedList();
         } else if (command == "q") {
@@ -135,10 +186,8 @@ int main() {
             break;
         } else {
             cout << "Invalid command" << endl;
-            // clear input buffer if needed
         }
     }
 
     return 0;
 }
-
