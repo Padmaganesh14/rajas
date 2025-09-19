@@ -1,44 +1,39 @@
 #include <iostream>
+#include <chrono>
 using namespace std;
+using namespace std::chrono;
 
 class Stack {
 private:
-    static const int MAX = 100;  // Maximum size of stack
+    static const int MAX = 100;
     int stack[MAX];
     int top;
 
 public:
-    Stack() {
-        top = -1;
-    }
+    Stack() { top = -1; }
 
-    bool isEmpty() {
-        return top == -1;
-    }
+    bool isEmpty() { return top == -1; }
 
     void push(int value) {
         if (top == MAX - 1) {
             cout << "Stack Overflow" << endl;
             return;
         }
-        top++;
-        stack[top] = value;
+        stack[++top] = value;
     }
 
     int pop() {
         if (isEmpty()) {
             cout << "Stack Underflow" << endl;
-            return -1;  // Return -1 or some sentinel value
+            return -1;
         }
-        int value = stack[top];
-        top--;
-        return value;
+        return stack[top--];
     }
 
     int peek() {
         if (isEmpty()) {
             cout << "Stack is empty" << endl;
-            return -1;  // Return -1 or some sentinel value
+            return -1;
         }
         return stack[top];
     }
@@ -47,9 +42,8 @@ public:
         if (isEmpty()) {
             cout << "Stack is empty" << endl;
         } else {
-            for (int i = top; i >= 0; i--) {
+            for (int i = top; i >= 0; i--)
                 cout << stack[i] << " ";
-            }
             cout << endl;
         }
     }
@@ -58,17 +52,24 @@ public:
 int main() {
     Stack s;
 
-    s.push(10);
-    s.push(20);
-    s.push(30);
+    auto start = high_resolution_clock::now();
 
-    s.display(); 
+    // Example operations
+    for (int i = 0; i < 100; i++) {
+        s.push(i);
+    }
+    for (int i = 0; i < 50; i++) {
+        s.pop();
+    }
 
-    cout << "Top element is: " << s.peek() << endl; 
+    auto end = high_resolution_clock::now();
 
-    cout << "Popped element: " << s.pop() << endl;  
+    auto duration = duration_cast<microseconds>(end - start);
 
-    s.display();  
+    cout << "Time taken for stack operations: " << duration.count() << " microseconds" << endl;
+
+    s.display();
 
     return 0;
 }
+
