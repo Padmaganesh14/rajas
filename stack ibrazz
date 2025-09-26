@@ -1,25 +1,33 @@
 #include <iostream>
-#include <chrono>
 using namespace std;
-using namespace std::chrono;
 
 class Stack {
-private:
-    static const int MAX = 100;
-    int stack[MAX];
+    int* stack;
     int top;
+    int capacity;
 
 public:
-    Stack() { top = -1; }
+    Stack(int size) {
+        capacity = size;
+        stack = new int[capacity];
+        top = -1;
+    }
 
-    bool isEmpty() { return top == -1; }
+    ~Stack() {
+        delete[] stack;
+    }
+
+    bool isEmpty() {
+        return top == -1;
+    }
 
     void push(int value) {
-        if (top == MAX - 1) {
+        if (top == capacity - 1) {
             cout << "Stack Overflow" << endl;
             return;
         }
-        stack[++top] = value;
+        top = top + 1;
+        stack[top] = value;
     }
 
     int pop() {
@@ -27,7 +35,9 @@ public:
             cout << "Stack Underflow" << endl;
             return -1;
         }
-        return stack[top--];
+        int value = stack[top];
+        top = top - 1;
+        return value;
     }
 
     int peek() {
@@ -42,34 +52,59 @@ public:
         if (isEmpty()) {
             cout << "Stack is empty" << endl;
         } else {
-            for (int i = top; i >= 0; i--)
+            for (int i = top; i >= 0; i--) {
                 cout << stack[i] << " ";
+            }
             cout << endl;
         }
     }
 };
 
 int main() {
-    Stack s;
+    int size;
+    cout << "Enter stack size: ";
+    cin >> size;
 
-    auto start = high_resolution_clock::now();
+    Stack s(size);
 
-    // Example operations
-    for (int i = 0; i < 100; i++) {
-        s.push(i);
-    }
-    for (int i = 0; i < 50; i++) {
-        s.pop();
-    }
+    cout << "\nOperations:\n"
+         << "1. Push\n"
+         << "2. Pop\n"
+         << "3. Peek\n"
+         << "4. Display\n"
+         << "5. Exit\n";
 
-    auto end = high_resolution_clock::now();
+    int choice = 0, value;
+    do {
+        cout << "\nChoose an operation: ";
+        cin >> choice;
 
-    auto duration = duration_cast<microseconds>(end - start);
-
-    cout << "Time taken for stack operations: " << duration.count() << " microseconds" << endl;
-
-    s.display();
+        switch (choice) {
+            case 1:
+                cout << "Enter value to push: ";
+                cin >> value;
+                s.push(value);
+                break;
+            case 2:
+                value = s.pop();
+                if (value != -1)
+                    cout << "Popped value: " << value << endl;
+                break;
+            case 3:
+                value = s.peek();
+                if (value != -1)
+                    cout << "Top value: " << value << endl;
+                break;
+            case 4:
+                s.display();
+                break;
+            case 5:
+                cout << "Exiting program." << endl;
+                break;
+            default:
+                cout << "Invalid choice, please try again." << endl;
+        }
+    } while (choice != 5);
 
     return 0;
 }
-
