@@ -1,0 +1,35 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+string reverseStringUsingStack(const string& str) {
+    stack<char> st;
+    
+    for (size_t i = 0; i < str.length(); ++i) {
+        st.push(str[i]);
+    }
+    
+    
+    string reversedStr;
+    while (!st.empty()) {
+        reversedStr += st.top();
+        st.pop();
+    }
+    
+    return reversedStr;
+}
+
+int main() {
+    string input;
+    cout << "Enter a string: ";
+    getline(cin, input);  // Using getline to allow spaces
+    
+    string reversed = reverseStringUsingStack(input);
+    
+    cout << "Reversed string: " << reversed << endl;
+    if(input==reversed)
+        cout<<"The given string is a palindrome";
+    else
+        cout<<"The given string is not a palindrome";
+    return 0;
+}
