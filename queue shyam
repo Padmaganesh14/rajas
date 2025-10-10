@@ -1,0 +1,61 @@
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+int main() {
+    queue<int> q;
+    int choice, value;
+
+    do {
+        cout << "\nQueue Operations Menu:\n";
+        cout << "1. Enqueue (Insert)\n";
+        cout << "2. Dequeue (Remove)\n";
+        cout << "3. Display Queue\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                cout << "Enter the value to enqueue: ";
+                cin >> value;
+                q.push(value);
+                cout << value << " enqueued successfully.\n";
+                break;
+
+            case 2:
+                if (!q.empty()) {
+                    cout << "Dequeued element: " << q.front() << endl;
+                    q.pop();
+                } else {
+                    cout << "Queue is empty, nothing to dequeue.\n";
+                }
+                break;
+
+            case 3:
+                if (q.empty()) {
+                    cout << "Queue is empty.\n";
+                } else {
+                    cout << "Queue elements: ";
+                    queue<int> temp = q;  
+                    while (!temp.empty()) {
+                        cout << temp.front() << " ";
+                        temp.pop();
+                    }
+                    cout << endl;
+                }
+                break;
+
+            case 4:
+                cout << "Exiting...\n";
+                break;
+
+            default:
+                cout << "Invalid choice! Please try again.\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
