@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>image changer</title> 
+    </head>
+  <style>
+     h1{
+    
+      color:green;
+      font-style: italic;
+      c
+      align-items: center;
+       margin: 50px ;
+       border: center;
+       background-color: orange;
+       padding-left: 500px;
+     }
+     button{
+       color:red ;
+      font-style: italic;
+      align-items: center;
+     background-color: blue;
+     font-size: larger;
+       
+    }
+  </style>
+   <body>
+       <h1>IMAGE CHANGER USING EVENLISTENER</h1>
+       <div id="eg">
+          <img src="./bc.png" width="500px" height="500px" >
+          <br>
+          <br>
+          <button onclick="pg()">change</button>
+       </div>
+
+       <script>
+           function pg() {
+               const img = document.querySelector('img');
+               img.src = './yono.jpg';
+           }
+       </script>
+          
+   </body>
+</html>
+   

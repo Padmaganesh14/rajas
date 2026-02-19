@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordered List from Elements</title>
+</head>
+<body>
+
+<input type="text" id="inputText">
+<button id="insertBtn">Insert</button>
+
+<br><br>
+
+<ol id="list"></ol>
+
+<div id="wow">
+    <button onclick="vijay()">Output</button>
+</div>
+
+<script>
+    const ol = document.getElementById('list');
+    const input = document.getElementById('inputText');
+    const button = document.getElementById('insertBtn');
+    const tvk = document.getElementById('wow');  
+
+    button.addEventListener('click', function() {
+        const value = input.value.trim();
+        if (value) {
+            const li = document.createElement('li');
+            li.textContent = value;
+            ol.appendChild(li);
+            input.value = '';
+        }
+    });
+
+   function vijay() {
+    const items = document.getElementsByTagName('li');
+    let output = "Inserted items:\n";
+
+    Array.from(items).forEach(function(item) {
+        output += item.textContent + "\n";
+    });
+
+    let result = document.getElementById("result");
+
+    if (!result) {
+        result = document.createElement("pre");
+        result.id = "result";
+        tvk.appendChild(result);
+    }
+
+    result.textContent = output;
+}
+
+</script>
+
+</body>
+</html>
