@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+    <head> 
+        <meta charset="UTF-8">
+         <title>pin code</title>
+
+    </head>
+    <body>
+        <h1>pin code verfication</h1>
+        <div id="re">
+            <input type="text" id="sa">
+            
+
+
+        </div>
+        <br>
+        <button onclick="whistle()">submit</button>
+        <script>
+            function whistle(){
+                let pin = document.getElementById("sa").value;
+                
+         
+                let pattern = /^\d{6}$/;
+                
+          
+                if (pattern.test(pin)) {
+                    alert("Valid Pin Code: " + pin);
+                } else {
+                    alert("Invalid Pin Code!\n\nPlease enter a 6-digit pin code.");
+                }
+            }
+        </script>
+    </body>
+    
+</html>
